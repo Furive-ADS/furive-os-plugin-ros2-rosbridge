@@ -17,7 +17,7 @@ docker:
     ROS_DOMAIN_ID: "${ROS_DOMAIN_ID:-79}"
     ROS_LOCALHOST_ONLY: "0"
     RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
-    CYCLONEDDS_URI: "file:///ros2_ws/cyclonedds_config.xml"
+    CYCLONEDDS_URI: "file:///etc/cyclonedds/config.xml"
 
 run:
   script: run.sh
