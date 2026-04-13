@@ -1,0 +1,41 @@
+name: ros2-rosbridge
+version: 1.0.0
+type: docker
+description: "ROS2 Rosbridge WebSocket 서버"
+
+docker:
+  image_name: furive-os-plugin-ros2-rosbridge
+  container_name: furive-os-plugin-ros2-rosbridge
+  network: host
+  ipc: host
+  privileged: false
+  volumes:
+    - "/etc/localtime:/etc/localtime:ro"
+    - "/dev/shm:/dev/shm"
+    - "${SHARED_MSGS_DIR}/install:/opt/furive-os/msgs/install:ro"
+  environment:
+    ROS_DOMAIN_ID: "${ROS_DOMAIN_ID:-79}"
+    ROS_LOCALHOST_ONLY: "0"
+    RMW_IMPLEMENTATION: rmw_cyclonedds_cpp
+    CYCLONEDDS_URI: "file:///ros2_ws/cyclonedds_config.xml"
+
+run:
+  script: run.sh
+
+build:
+  script: build.sh
+  hash_file: .build_hash
+
+health_check:
+  type: docker_inspect
+  container: furive-os-plugin-ros2-rosbridge
+  startup_grace_seconds: 15
+  max_failures: 3
+
+dependencies: []
+
+update:
+  strategy: stop-start
+  rollback_on_failure: true
+
+nodes: [agent]
