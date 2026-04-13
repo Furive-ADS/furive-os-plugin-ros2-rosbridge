@@ -10,8 +10,8 @@ if [ ! -d "$SHARED_INSTALL" ]; then
   SHARED_INSTALL="$SHARED_MSGS_DIR"
 fi
 
-# CycloneDDS 설정 (runtime_assets로 동기화된 경로)
-CYCLONEDDS_CONFIG="/data/furive-os/ros2_rosbridge/cyclonedds_config.xml"
+# 공용 CycloneDDS 설정
+CYCLONEDDS_CONFIG="/data/furive-os/cyclonedds_config.xml"
 
 docker run -d \
   --name "$CONTAINER_NAME" \
