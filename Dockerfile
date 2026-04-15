@@ -15,4 +15,4 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["ros2", "launch", "rosbridge_server", "rosbridge_websocket_launch.xml"]
+CMD ["ros2", "launch", "rosbridge_server", "rosbridge_websocket_launch.xml", "bson_only_mode:=true"]
