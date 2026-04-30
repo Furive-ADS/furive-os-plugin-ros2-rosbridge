@@ -13,6 +13,7 @@ docker:
     - "/etc/localtime:/etc/localtime:ro"
     - "/dev/shm:/dev/shm"
     - "${SHARED_MSGS_DIR}/install:/opt/furive-os/msgs/install:ro"
+    - "/data/furive-os/cyclonedds_config.xml:/etc/cyclonedds/config.xml:ro"
   environment:
     ROS_DOMAIN_ID: "${ROS_DOMAIN_ID:-79}"
     ROS_LOCALHOST_ONLY: "0"
@@ -33,6 +34,8 @@ health_check:
   max_failures: 3
 
 dependencies: []
+restart_on:
+  - ros_domain_id
 
 update:
   strategy: stop-start
